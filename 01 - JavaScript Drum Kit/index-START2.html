@@ -75,7 +75,7 @@ function removeTransition(e) {
     // console.log(this) this = key
     this.classList.remove("playing")
 }
-  
+
 const keys = document.querySelectorAll(".key")
 keys.forEach(key => key.addEventListener("transitionend", removeTransition))
 window.addEventListener("keydown", playSound)
@@ -84,4 +84,3 @@ window.addEventListener("keydown", playSound)
 
 </body>
 </html>
-a

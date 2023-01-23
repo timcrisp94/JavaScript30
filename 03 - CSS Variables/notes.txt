@@ -1,0 +1,56 @@
+CSS Variable can be updated with JavaScript
+
+For this project we have three variables Spacing, Blur, and Base Color
+
+Div Class controls
+    three inputs for each variables
+
+  <div class="controls">
+    <label for="spacing">Spacing:</label>
+    <input id="spacing" type="range" name="spacing" min="10" max="200" value="10" data-sizing="px">
+
+    <label for="blur">Blur:</label>
+    <input id="blur" type="range" name="blur" min="0" max="25" value="10" data-sizing="px">
+
+    <label for="base">Base Color</label>
+    <input id="base" type="color" name="base" value="#ffc600">
+  </div>
+
+1. Set variables on the element root, values equal to html value
+<style>
+    :root {
+        --base: #ffc600
+        --spacing: 10px
+        --blur: 10px
+    }
+
+2. Grab image and add properties using root variables (add border to image)
+    img {
+        padding: var(--spacing)
+        background: var(--base)
+        filter: blur(var(--blur))
+    }
+
+3. Set color of JS hightlight on h2 'hl' (highlight) using base variables
+    .hl {
+        color: var(--base)
+    }
+</style>
+
+4. Update values
+4.1. select all inputs so that when they change, they updated
+<script>
+    const inputs = document.querySelectorAll('.controls input') --> ('.div class element')
+4.2. create handleUpdate function
+    function handleUpdate() {
+        // find suffix
+        // will either be pixels (padding, filter) or nothing (base)
+        const suffix = this.dataset.sizing || ''
+        document.documentElement.style.setProperty(`--{this.name}`, this.value + suffix)
+    }
+4.3. use forEach to pass handleUpdate to each input
+    inputs.forEach(input => input.addEventListener('change', handleUpdate))
+    inputs.forEach(input => input.addEventListener('mousemove', handleUpdate))
+
+</script>
+ 

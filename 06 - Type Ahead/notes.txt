@@ -19,3 +19,15 @@ fetch(endpoint)
 
 
 2. CREATE FUNCTION FOR FINDING MATCHES
+function findMatches(wordToMatch, cities) {
+  return cities.filter(city => {
+    // if city or state matches what was searched
+  })
+}
+
+function findMatches(wordToMatch, cities) {
+  return cities.filter(place => {
+    const regex = new RegExp(wordToMatch, 'gi')
+    return place.city.match(regex) || place.state.match(regex)
+  })
+}

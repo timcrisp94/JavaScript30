@@ -1,0 +1,21 @@
+1. FETCH DATA, FILTER Array and ADD To CITIES
+const cities = [] 
+
+const prom = fetch(endpoint)
+console.log(prom)
+// returns: Promise {<pending>}
+
+fetch(endpoint).then(blob => console.log(blob))
+// returns: Response {}
+
+fetch(endpoint)
+  .then(blob => blob.json())
+  .then(data => console.log(data))
+//returns: Giant Array of objects
+
+fetch(endpoint)
+  .then(blob => blob.json())
+  .then(data => cities.push(...data))
+
+
+2. CREATE FUNCTION FOR FINDING MATCHES

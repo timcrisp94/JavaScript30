@@ -35,7 +35,7 @@
     ctx.stroke()
     lastX = e.offsetX
     lastY = e.offsetY
-    hue++
+    hue++ 
     
     if (hue >= 360) {
       hue = 0
@@ -57,9 +57,7 @@
   canvas.addEventListener('mousedown', (e) =>  {
     isDrawing = true
     lastX = e.offsetX
-    lastY = e.offsetY
-
-  
+    lastY = e.offsetY  
   })
 
   canvas.addEventListener('mousemove', draw)

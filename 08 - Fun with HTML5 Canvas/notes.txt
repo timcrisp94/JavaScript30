@@ -1,7 +1,118 @@
 1. grab canvas using variable
 
-const canvas = document.querySelector("#draw")
+    const canvas = document.querySelector("#draw")
 
 2. context allows you to draw on the canvas, so grab that
 
-const ctx = canvas.getContext('2d')
+    const ctx = canvas.getContext('2d')
+
+3. size up canvas to be size of the window
+
+  canvas.width = window.innerWidth
+  canvas.height = window.innerHeight
+
+4. create base context settings
+* search mdn for lineJoin, lineCap
+
+    ctx.strokeStyle = '#BADA55'
+    ctx.lineJoin = 'round'
+    ctx.lineCap  = 'round'
+
+5. create isDrawing flag
+
+    let isDrawing = false
+
+6. create lastX and lastY variables - our lines need starting and stopping positions
+
+    let lastX = 0
+    let lastY = 0
+
+7. create a draw function
+
+    function draw(e) {
+        console.log(e)
+    }
+
+7.1. add event listener for mousemove
+
+    canvas.addEventListener('mousemove', draw)
+
+    *check console, each event has offsetX and offsetY properties
+
+7.2. update draw function, draw only when person has clicked down
+
+    function draw(e) {
+        if (!isDrawing) return // stop fn when not mouse down
+        console.log(e)
+    }
+
+7.3 add mouse event listeners
+
+    canvas.addEventListener('mousemove', draw)
+    canvas.addEventListener('mousedown', () => isDrawing = true)
+    canvas.addEventListener('mouseup', () => isDrawing = false)
+    canvas.addEventListener('mouseout', () => isDrawing = false)
+
+7.4 add beginPath, moveTo, lineTo, and stroke to draw function
+
+    ctx.beginPath()
+    // start from
+    ctx.moveTo(lastX, lastY)
+    // go to
+    ctx.lineTo(e.offsetX, e.offsetY)
+    ctx.stroke()
+
+7.5 update lastX and lastY within draw function
+
+    [lastX, lastY] = [e.offsetX, e.offsetY ]
+
+7.6 update mousedown event listener to a function block, update isDrawing, lastX and lastY
+
+    canvas.addEventListener('mousedown', (e) =>  {
+        isDrawing = true
+        lastX = e.offsetX
+        lastY = e.offsetY  
+  })
+
+8. fatten up that line width
+
+    ctx.lineWidth = 100
+
+9. use HSL to programmatically choose colors
+9.1 declare hue variable
+
+    let hue = 0
+
+9.2 add hsl properties to stroke style in the draw function
+
+    ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`
+
+9.3 increment hue
+
+    (38) hue++
+
+9.4 add conditional to hue so that it resets at 360
+
+    if (hue >= 360) {
+      hue = 0
+    }
+
+9.5 add conditional to increment and decrement line width in draw function
+
+9.5.1 declare hue variable
+
+    let hue = 0
+
+9.5.2 add if statement to change direction to true or false
+
+    if (ctx.lineWidth >= 100 || ctx.lineWidth <= 1) {
+        direction = !direction
+    }
+
+9.5.3 add if else to increment or decrement line width
+
+    if (direction) {
+      ctx.lineWidth++
+    } else {
+      ctx.lineWidth--
+    }

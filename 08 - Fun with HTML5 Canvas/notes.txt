@@ -1,0 +1,7 @@
+1. grab canvas using variable
+
+const canvas = document.querySelector("#draw")
+
+2. context allows you to draw on the canvas, so grab that
+
+const ctx = canvas.getContext('2d')

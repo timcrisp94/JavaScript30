@@ -96,40 +96,38 @@
   </div>
 
 <script>
-  // select all checkboxes
-  const checkboxes = document.querySelectorAll(".inbox input[type='checkbox'")
-  let lastChecked
+  const checkboxes = document.querySelectorAll('.inbox input[type="checkbox"]')
+  console.log(checkboxes)
+  
+  // we want to know which checkbox was clicked last
+  let lastchecked
 
-  // handleClick helper function for the checkboxes forEach
   function handleShift(e) {
-    // console.log(e)
-    // // PointerEvent {isTrusted: true, pointerId: 1, width: 1, height: 1, pressure: 0, …}
-
-    // check if they had the shift key down
-    // check that they are checking it
-
-    let inbetween = false
-
+    // if the shift button has been pressed: shiftdown = true
+    // and check that they are "checking" the box
+    let inBetween = false
     if (e.shiftKey && this.checked) {
-      // loop every checkbox
+      // loop over each checkbox
+      // look for first box that's been checked, then the second, etc
       checkboxes.forEach(checkbox => {
-        // console.log(checkbox)
-        if (checkbox === this || checkbox === lastChecked) {
-          inbetween = !inbetween
+        if (checkbox === this || checkbox === lastchecked) {
+          inBetween = !inBetween
+          console.log("starting to check in between")
         }
 
-        if (inbetween) {
-          checkbox.checked = true
+        if (inBetween) {
+          checkbox.checked = true 
         }
       })
-
     }
 
-    lastChecked = this // <-- bow down
-
+    lastchecked = this // <- this will create a reference to the input which was last checked
   }
 
   checkboxes.forEach(checkbox => checkbox.addEventListener("click", handleShift))
+
+  
+
 </script>
 </body>
 </html>

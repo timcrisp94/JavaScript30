@@ -5,8 +5,7 @@ JavaScript is divided into three sections
 2. Build Functions
 3. Add Event Listeners
 
-
-==togglePlay==
+```togglePlay```
 ```
 function togglePlay() {
     const method = video.paused ? 'play' : 'pause'

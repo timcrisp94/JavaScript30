@@ -27,6 +27,14 @@ body {
   overflow: hidden;
 }
 
+button.toggle.fullscreen::before {
+  font-family: "FontAwesome";
+  content: "\f065";
+  border: 0.2em solid white;
+  padding: 1px 0.3em;
+  border-radius: 0.4em;
+}
+
 /* This css is only applied when fullscreen is active. */
 .player:fullscreen {
   max-width: none;
